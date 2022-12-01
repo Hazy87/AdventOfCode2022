@@ -1,15 +1,14 @@
-﻿var max = 0;
+﻿var totals = new List<int>();
 var current = 0;
 var lines = await File.ReadAllLinesAsync("input.json");
 foreach (var line in lines) 
 {
     if(string.IsNullOrEmpty(line))
     {
-        if (current > max)
-            max = current;
+        totals.Add(current);
         current = 0;
     }
     else
         current = current + int.Parse(line);
 }
-Console.Write(max);
+Console.Write(totals.OrderByDescending(x => x).Take(3).Sum());
