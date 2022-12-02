@@ -2,7 +2,7 @@ namespace Day2;
 
 public enum MoveType
 {
-    Scissors,
-    Rock,
-    Paper
+    Scissors =3,
+    Rock = 1,
+    Paper =2
 }
