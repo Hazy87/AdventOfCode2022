@@ -1,22 +1,15 @@
-﻿
-using System.Diagnostics;
-using System.Linq.Expressions;
-
-var readAllLinesAsync = await File.ReadAllLinesAsync("input.txt");
+﻿var readAllLinesAsync = await File.ReadAllLinesAsync("input.txt");
 var totalPriority = 0;
-foreach(var line in readAllLinesAsync)
+for (var i = 0; i < readAllLinesAsync.Length; i += 3)
 {
     var priority = 0;
-    var halfLength = line.Length/2;
-    var firstHalf = line.Substring(0, halfLength);
-    var secondHalf = line.Substring(halfLength);
-    var commonChar = firstHalf.ToList().Intersect(secondHalf.ToList());
-    if (commonChar.Count() == 0)
-        continue;;
+
+    var commonChar = readAllLinesAsync[i].Intersect(readAllLinesAsync[i+1]).Intersect(readAllLinesAsync[i+2]).ToArray();
     if (commonChar.First() > 97)
         priority = commonChar.First()-96;
     else
         priority = commonChar.First() - 38;
     totalPriority += priority;
+
 }
 Console.WriteLine(totalPriority);
