@@ -13,3 +13,5 @@ for (var i = 0; i < readAllLinesAsync.Length; i += 3)
 
 }
 Console.WriteLine(totalPriority);
+
+Console.WriteLine((await File.ReadAllLinesAsync("input.txt")).Chunk(3).ToList().Select(x => x[0].Intersect(x[1]).Intersect(x[2])).Select(x => x.First() > 96 ? x.First()-96 : x.First()-38).Sum());
