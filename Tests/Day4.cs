@@ -1,5 +1,4 @@
 using Day4;
-using Xunit;
 using Assert = Xunit.Assert;
 
 namespace Tests;
