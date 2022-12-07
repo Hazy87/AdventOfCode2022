@@ -36,7 +36,9 @@ int GetSize(Directory directory1, List<Directory> list)
     return size;
 }
 
-var sum = directories.Where(x => GetSize(x, directories) <= 100000).Sum(x => GetSize(x, directories));
+var fileUsage = GetSize(directories.Single(x => x.Name == "/"), directories);
+var neededSize = 30000000 - ( 70000000 - fileUsage);
+var sum = directories.Where(x => GetSize(x, directories) >= neededSize).Min(x => GetSize(x,directories));
 Console.WriteLine(sum);
 
 public class Helper
