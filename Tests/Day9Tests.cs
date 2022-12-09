@@ -11,7 +11,7 @@ public class Day9Tests
     [InlineData(1,2, 2,2, false)]
     public void Follower_DoINeed_ToMove(int headx, int heady, int tailx, int taily, bool expectedOutcome)
     {
-        var doINeedToMove = Follower.DoINeedToMove((headx,heady), (tailx,taily));
+        var doINeedToMove = Follower.DoINeedToMove(new Knot(headx,heady), new Knot(tailx,taily));
         
         Assert.Equal(expectedOutcome, doINeedToMove);
     }
@@ -22,7 +22,7 @@ public class Day9Tests
     [InlineData(1, 2, 3, 3, 2, 2)]
     public void Follow_MoveTail(int headx, int heady, int tailx, int taily, int expectedX, int expectedY)
     {
-        var move = Follower.MoveTail((headx, heady), (tailx, taily));
+        var move = Follower.MoveTail(new Knot(headx, heady), new Knot(tailx, taily));
         
         Assert.Equal(expectedX, move.x);
         Assert.Equal(expectedY, move.y);

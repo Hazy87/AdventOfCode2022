@@ -1,6 +1,6 @@
 public class Follower
 {
-    public static bool DoINeedToMove((int x, int y) head, (int x, int y) tail)
+    public static bool DoINeedToMove(Knot head, Knot tail)
     {
         var headX = Math.Abs(head.x - tail.x);
         var headY = Math.Abs(head.y - tail.y);
@@ -9,19 +9,31 @@ public class Follower
         return true;
     }
 
-    public static ((int x, int y) headposition, (int x, int y) tailposition) MoveHead(string direction, int spacesMoved, (int x, int y) headposition, (int x, int y) tailposition)
+    public static void MoveHead(string direction, int spacesMoved, List<Knot> knots)
     {
+        var head = knots.Single(x => x.Head is null);
         for (int i = 0; i < spacesMoved; i++)
         {
-            headposition = MoveHead(direction, 1, headposition);
-            if(DoINeedToMove(headposition, tailposition))
-                tailposition = MoveTail(headposition, tailposition);
+            head = MoveHead(direction, 1, head);
+            var myhead = head;
+            while (true)
+            {
+                if (!knots.Any(x => x.Head == myhead))
+                    break;
+                MoveTails(myhead, knots.Single(x => x.Head == myhead));
+                myhead = knots.Single(x => x.Head == myhead);
+            }
+            
         }
-
-        return (headposition, tailposition);
     }
 
-    private static (int x, int y) MoveHead(string direction, int spacesMoved, (int x, int y) headposition)
+    private static void MoveTails(Knot head, Knot tail)
+    {
+        if(DoINeedToMove(head, tail))
+            MoveTail(head, tail);
+    }
+
+    private static Knot MoveHead(string direction, int spacesMoved, Knot headposition)
     {
         if (direction == "R")
             headposition.y += spacesMoved;
@@ -34,17 +46,18 @@ public class Follower
         return headposition;
     }
 
-    public static (int x, int y) MoveTail((int x, int y) head, (int x, int y) tail)
+    public static Knot MoveTail(Knot head, Knot tail)
     {
-        var resultx = Resultx(head.x, tail.x);
-        var resulty = Resultx(head.y, tail.y);
-        positions.Add($"{resultx}--{resulty}");
-        return (resultx,resulty);
+        tail.x = MoveAxis(head.x, tail.x);;
+        tail.y = MoveAxis(head.y, tail.y);;
+        if(head.Id == 9)
+            positions.Add($"{tail.x}--{tail.y}");
+        return tail;
     }
 
     public static List<string> positions = new();
 
-    private static int Resultx(int head, int tail)
+    private static int MoveAxis(int head, int tail)
     {
         int result = tail;
         if (Math.Abs(head - tail) >= 1)
