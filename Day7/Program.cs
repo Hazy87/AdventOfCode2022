@@ -41,12 +41,11 @@ var neededSize = 30000000 - ( 70000000 - fileUsage);
 var sum = directories.Where(x => GetSize(x, directories) >= neededSize).Min(x => GetSize(x,directories));
 Console.WriteLine(sum);
 
-public class Helper
+public static class Helper
 {
     public static bool IsFile(string command)
     {
-        int whocares;
-        return int.TryParse(command.Split()[0], out whocares);
+        return int.TryParse(command.Split()[0], out _);
     }
 }
 class Directory

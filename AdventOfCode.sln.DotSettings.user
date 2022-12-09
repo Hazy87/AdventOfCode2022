@@ -6,5 +6,6 @@
     &lt;TestId&gt;xUnit::C495FF2A-732D-4D13-B044-DC637E5958F2::net6.0::Tests.Day5Tests.MakeStack_ReturnsCorrectStacks&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::C495FF2A-732D-4D13-B044-DC637E5958F2::net6.0::Tests.Day5Tests.MoveParser_parses&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::C495FF2A-732D-4D13-B044-DC637E5958F2::net6.0::Tests.Day6Tests.MarkerFinder_FindsMarker&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C495FF2A-732D-4D13-B044-DC637E5958F2::net6.0::Tests.Day9Tests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
